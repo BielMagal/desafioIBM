@@ -15055,3 +15055,39 @@ div.v-layout.v-horizontal.v-widget {
 	width: 19px;
 	overflow: hidden;
 }
+
+.BancoTheme .cabecalho-rodape {
+	background-color: #6adbd9;
+}
+
+.BancoTheme .v-menubar {
+	font-size: 12px;
+	color: #404040;
+	border: none;
+	box-shadow: none;
+	background: transparent;
+}
+
+.BancoTheme .v-menubar > .v-menubar-menuitem {
+	line-height: 28px;
+	font-weight: 700;
+	padding: 0 10px;
+	background: #cafcfb;
+}
+
+.BancoTheme .v-menubar > .v-menubar-menuitem-selected {
+	color: white;
+	background: #3acbc6;
+}
+
+.BancoTheme .v-menubar > .v-menubar-menuitem-highlight {
+	background: #0bbcb6;
+	font-size: 14px;
+	color: white;
+}
+
+.BancoTheme .bem-vindo {
+	padding-left: 10px;
+	padding-top: 10px;
+	font-size: 20px;
+}

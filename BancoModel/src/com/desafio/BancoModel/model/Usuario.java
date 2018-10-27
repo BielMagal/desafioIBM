@@ -16,7 +16,7 @@ public class Usuario implements Serializable, EntidadeBase {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Integer cpf;
+	private String cpf;
 	
 	private String nome;
 
@@ -26,6 +26,7 @@ public class Usuario implements Serializable, EntidadeBase {
 
 	private String senha;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date nascimento;
 
 	@ManyToOne
@@ -40,15 +41,15 @@ public class Usuario implements Serializable, EntidadeBase {
 	}
 
 	@Override
-	public Integer getId() {
+	public String getId() {
 		return getCPF();
 	}
 
-	public Integer getCPF() {
+	public String getCPF() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 

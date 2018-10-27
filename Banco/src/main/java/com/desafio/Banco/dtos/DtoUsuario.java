@@ -121,4 +121,8 @@ public class DtoUsuario {
 			idade--;
 	    return idade;
 	}
+	
+	public boolean usuarioGerente() {
+		return this.tipoUsuario.getDescricao().equals("Gerente");
+	}
 }

@@ -18,10 +18,11 @@ public class Conta implements Serializable, EntidadeBase {
 	@Id @GeneratedValue
 	private Integer id;
 
-	private Integer usuario;
+	private String usuario;
 
 	private Double saldo;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date criacao;
 
 	public Conta() {
@@ -35,11 +36,11 @@ public class Conta implements Serializable, EntidadeBase {
 		this.id = id;
 	}
 
-	public Integer getUsuario() {
+	public String getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Integer usuario) {
+	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 

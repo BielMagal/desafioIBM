@@ -45,6 +45,11 @@
 
 	<dependencies>
 		<dependency>
+		   <groupId>org.vaadin</groupId>
+		   <artifactId>textfieldformatter</artifactId>
+		   <version>2.1</version>
+		</dependency>
+		<dependency>
 			<groupId>com.desafio</groupId>
 			<artifactId>BancoModel</artifactId>
 			<version>0.0.1</version>

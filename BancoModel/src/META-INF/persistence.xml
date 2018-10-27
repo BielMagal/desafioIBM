@@ -7,8 +7,5 @@
 		<class>com.desafio.BancoModel.model.TiposUsuarios</class>
 		<class>com.desafio.BancoModel.model.Transacao</class>
 		<class>com.desafio.BancoModel.model.TiposTransacoes</class>
-		<properties>
-			<property name="javax.persistence.schema-generation.database.action" value="create"/>
-		</properties>
 	</persistence-unit>
 </persistence>

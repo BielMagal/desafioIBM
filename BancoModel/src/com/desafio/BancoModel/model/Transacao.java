@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the transacao database table.
@@ -23,7 +25,8 @@ public class Transacao implements Serializable, EntidadeBase {
 
 	@Id @GeneratedValue
 	private Integer id;
-	
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
 
 	@ManyToOne
