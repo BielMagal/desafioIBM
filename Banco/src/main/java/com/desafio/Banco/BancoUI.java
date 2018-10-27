@@ -2,6 +2,7 @@ package com.desafio.Banco;
 
 import javax.servlet.annotation.WebServlet;
 
+import com.desafio.BancoModel.model.Usuario;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
@@ -24,6 +25,7 @@ public class BancoUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
+    	Usuario u;
         final VerticalLayout layout = new VerticalLayout();
         
         final TextField name = new TextField();

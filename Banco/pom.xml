@@ -45,6 +45,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.desafio</groupId>
+			<artifactId>BancoModel</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.0.1</version>

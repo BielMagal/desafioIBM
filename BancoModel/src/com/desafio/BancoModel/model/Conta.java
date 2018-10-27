@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Conta implements Serializable, EntidadeBase {
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	@Id @GeneratedValue
 	private Integer id;
 
 	private Integer usuario;

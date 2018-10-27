@@ -33,6 +33,10 @@ public class Transacao implements Serializable, EntidadeBase {
 	@ManyToOne
 	@JoinColumn(name = "conta_destino_id")
 	private Conta contaDestino;
+
+	@ManyToOne
+	@JoinColumn(name = "tipo_transacao_id")
+	private TiposTransacoes tipoTransacao;
 	
 	private Double valor;
 	
