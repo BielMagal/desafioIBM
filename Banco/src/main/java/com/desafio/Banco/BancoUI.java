@@ -254,7 +254,7 @@ public class BancoUI extends UI {
 	}
 	
 	@WebServlet(urlPatterns = "/*", name = "BancoUIServlet", asyncSupported = true)
-    @VaadinServletConfiguration(ui = BancoUI.class, productionMode = false)
+    @VaadinServletConfiguration(ui = BancoUI.class, productionMode = true)
     public static class BancoUIServlet extends VaadinServlet {
 		private static final long serialVersionUID = 1L;
     }

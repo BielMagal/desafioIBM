@@ -3,6 +3,7 @@ package com.desafio.Banco.dtos;
 import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import com.desafio.Banco.utils.BancoUtil;
 import com.desafio.BancoModel.model.Transacao;
@@ -126,7 +127,7 @@ public class DtoTransacao {
 	}
 
 	public String getValorFormatado() {
-		return NumberFormat.getCurrencyInstance().format(valor);
+		return NumberFormat.getCurrencyInstance(new Locale("pt", "BR" )).format(valor);
 	}
 
 	public String getValorString() {

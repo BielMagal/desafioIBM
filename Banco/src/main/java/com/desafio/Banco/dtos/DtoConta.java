@@ -3,6 +3,7 @@ package com.desafio.Banco.dtos;
 import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import com.desafio.BancoModel.model.Conta;
 
@@ -89,7 +90,7 @@ public class DtoConta {
 	}
 
 	public String getSaldoFormatado() {
-		return NumberFormat.getCurrencyInstance().format(saldo);
+		return NumberFormat.getCurrencyInstance(new Locale("pt", "BR" )).format(saldo);
 	}
 	
 }

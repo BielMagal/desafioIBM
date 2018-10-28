@@ -115,10 +115,15 @@ public class UsuarioWindow extends Window {
 		binder.forField(campoEmail).withValidator(BancoUtil.getOptionalMailValidator()).bind(DtoUsuario::getEmail, DtoUsuario::setEmail);
 		binder.forField(campoEndereco).withValidator(endereco -> !endereco.equals(""), "campo obrigatório").bind(DtoUsuario::getEndereco, DtoUsuario::setEndereco);
 		VerticalLayout content;
-		if(novoUsuario)
-			content = new VerticalLayout(campoCpf, campoNome, campoEmail, campoNascimento, cbTipos, campoEndereco, campoNovaSenha1, campoNovaSenha2, layoutBtns);
-		else
-			content = new VerticalLayout(campoCpf, campoNome, campoConta, campoEmail, campoNascimento, campoEndereco, campoNovaSenha1, campoNovaSenha2, campoSenha, layoutBtns);
+		if(novoUsuario) {
+			VerticalLayout left = new VerticalLayout(campoCpf, campoNome, campoEmail, campoNascimento); 
+			VerticalLayout right = new VerticalLayout( campoEndereco, cbTipos, campoNovaSenha1, campoNovaSenha2);
+			content = new VerticalLayout(new HorizontalLayout(left, right), layoutBtns);		
+		}else {
+			VerticalLayout left = new VerticalLayout(campoCpf, campoNome, campoEmail, campoNascimento); 
+			VerticalLayout right = new VerticalLayout( campoEndereco, campoConta, campoNovaSenha1, campoNovaSenha2, campoSenha);
+			content = new VerticalLayout(new HorizontalLayout(left, right), layoutBtns);
+		}
 		content.setComponentAlignment(layoutBtns, Alignment.BOTTOM_RIGHT);
 		content.setSpacing(true);
 		content.setMargin(true);

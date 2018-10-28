@@ -5,6 +5,7 @@ import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Locale;
 
 import org.joda.time.DateTime;
 
@@ -38,7 +39,7 @@ public class PrincipalLayout extends HorizontalLayout{
 	FacadeDados facadeDados = new FacadeDados();
 	DtoUsuario usuario;
 	Button btnSaque, btnDeposito, btnTransferencia, btnGerar;
-	NumberFormat formatar = NumberFormat.getCurrencyInstance();
+	NumberFormat formatar = NumberFormat.getCurrencyInstance(new Locale("pt", "BR" ));
 	GridTransacoes gridTransacoes;
 	BancoUI ui = (BancoUI) UI.getCurrent();
 	DateField fieldInicio, fieldFim;
