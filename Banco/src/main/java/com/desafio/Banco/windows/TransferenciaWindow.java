@@ -24,24 +24,21 @@ import com.vaadin.ui.Window;
 public class TransferenciaWindow extends Window {
 	private static final long serialVersionUID = 1L;
 
-	private FacadeDados facadeTransacao;
+	private FacadeDados facadeDados;
 
 	DtoTransacao transacao;
 	Binder<DtoTransacao> binder;
-
 	TextField contaDestino, valor;
-	Button confirmar;
-
 	HorizontalLayout layoutBtns;
 	Button btnConfirmar, btnCancelar;
 	PrincipalLayout layout;
 	Conta conta;
 	
-	public TransferenciaWindow(FacadeDados facadeTransacao, PrincipalLayout layout, Conta conta) {
+	public TransferenciaWindow(FacadeDados facadeDados, PrincipalLayout layout, Conta conta) {
 		super();
 		this.conta = conta;
 		this.layout = layout;
-		this.facadeTransacao = facadeTransacao;
+		this.facadeDados = facadeDados;
 		this.transacao = new DtoTransacao();
 		transacao.setTipoTransacao(new DtoTipoTransacao("Transferência", null, null));
 		this.setCaption("Realizar Transferencia");
@@ -91,7 +88,7 @@ public class TransferenciaWindow extends Window {
 			binder.writeBeanIfValid(transacao);
 			transacao.setData(data);
 			transacao.setContaOrigem(conta.getStringId());
-			facadeTransacao.salvarTransacao(transacao);
+			facadeDados.salvarTransacao(transacao);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Notification.show("Erro ao efetuar transferência! Tente novamente");
@@ -103,8 +100,8 @@ public class TransferenciaWindow extends Window {
 	}
 
 	public boolean validation() {
-		Conta c = facadeTransacao.getConta(conta.getId());
-		if (contaDestino.getValue().equals("") || !facadeTransacao.contaValida(contaDestino.getValue())) {
+		Conta c = facadeDados.getConta(conta.getId());
+		if (contaDestino.getValue().equals("") || !facadeDados.contaValida(contaDestino.getValue())) {
 			Notification.show("Conta inválida.", Notification.Type.WARNING_MESSAGE);
 			contaDestino.focus();
 			return false;

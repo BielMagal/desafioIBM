@@ -2,8 +2,6 @@ package com.desafio.Banco.windows;
 
 import java.util.Calendar;
 
-import org.vaadin.textfieldformatter.CustomStringBlockFormatter;
-import org.vaadin.textfieldformatter.CustomStringBlockFormatter.Options;
 import org.vaadin.textfieldformatter.NumeralFieldFormatter;
 
 import com.desafio.Banco.dtos.DtoTipoTransacao;
@@ -24,24 +22,21 @@ import com.vaadin.ui.Window;
 public class DepositoWindow extends Window {
 	private static final long serialVersionUID = 1L;
 
-	private FacadeDados facadeTransacao;
+	private FacadeDados facadeDados;
 
 	DtoTransacao transacao;
 	Binder<DtoTransacao> binder;
-
 	TextField valor;
-	Button confirmar;
-
 	HorizontalLayout layoutBtns;
 	Button btnConfirmar, btnCancelar;
 	PrincipalLayout layout;
 	Conta conta;
 
-	public DepositoWindow(FacadeDados facadeTransacao, PrincipalLayout layout, Conta conta) {
+	public DepositoWindow(FacadeDados facadeDados, PrincipalLayout layout, Conta conta) {
 		super();
 		this.conta = conta;
 		this.layout = layout;
-		this.facadeTransacao = facadeTransacao;
+		this.facadeDados = facadeDados;
 		this.transacao = new DtoTransacao();
 		transacao.setTipoTransacao(new DtoTipoTransacao("Depósito", null, null));
 		this.setCaption("Realizar Depósito");
@@ -84,7 +79,7 @@ public class DepositoWindow extends Window {
 			binder.writeBeanIfValid(transacao);
 			transacao.setData(data);
 			transacao.setContaDestino(conta.getStringId());
-			facadeTransacao.salvarTransacao(transacao);
+			facadeDados.salvarTransacao(transacao);
 		} catch (Exception e) {
 			e.printStackTrace();
 			Notification.show("Erro ao efetuar depósito! Tente novamente");

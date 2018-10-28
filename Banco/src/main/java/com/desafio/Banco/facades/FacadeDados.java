@@ -87,10 +87,11 @@ public class FacadeDados {
 			usuarioDb.setEndereco(usuario.getEndereco().trim());
 			usuarioDb.setNascimento(usuario.getNascimento().getTime());
 			usuarioDb.setEmail(usuario.getEmail().trim().equals("") ? null : usuario.getEmail().trim());
-			usuarioDb.setConta(daoConta.findByID(usuario.getNumConta()));
+			usuarioDb.setConta(daoConta.findByID(Integer.valueOf(usuario.getNumConta())));
 			usuarioDb.setTipoUsuario(daoTiposUsuarios.findByID(usuario.getTipoUsuarioId()));
 			daoUsuario.save(usuarioDb);
-			criarSenha(usuario, usuario.getSenha());
+			if(usuarioDb.getSenha() != null && !usuarioDb.getSenha().equals(usuario.getSenha()))
+				criarSenha(usuario, usuario.getSenha());
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

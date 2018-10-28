@@ -6,10 +6,12 @@ import java.util.HashMap;
 import javax.servlet.annotation.WebServlet;
 
 import com.desafio.Banco.dtos.DtoUsuario;
+import com.desafio.Banco.facades.FacadeDados;
 import com.desafio.Banco.views.LoginView;
 import com.desafio.Banco.views.PrincipalView;
 import com.desafio.Banco.views.RelatorioView;
 import com.desafio.Banco.views.SaldoContasView;
+import com.desafio.Banco.windows.UsuarioWindow;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.event.UIEvents.PollEvent;
@@ -49,6 +51,7 @@ public class BancoUI extends UI {
 	protected MenuItem itemAnterior;
 	protected HashMap<String, String> viewVisiveis = new HashMap<>();
 	protected VerticalSplitPanel navegadorEsquerda;
+	protected FacadeDados facadeDados = new FacadeDados();
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
@@ -97,7 +100,7 @@ public class BancoUI extends UI {
 		labelCabecalho = new Label("");
 		labelCabecalho.setStyleName("bem-vindo");
 		Button btnConfiguracao = new Button("", new FileResource(new File(pastaIcones + "/configuracao.png")));
-		btnConfiguracao.addClickListener(this::gerenciarUsuarios);
+		btnConfiguracao.addClickListener(this::gerenciarUsuario);
 		btnConfiguracao.addStyleName("bigbutton");
 
 		Button btnSair = new Button("", new FileResource(new File(pastaIcones + "/sair.png")));
@@ -198,7 +201,12 @@ public class BancoUI extends UI {
 		navegador = new Navigator(this, conteudo);
 	}
     
-	protected void gerenciarUsuarios(Button.ClickEvent event) {
+	protected void gerenciarUsuario(Button.ClickEvent event) {
+		DtoUsuario usuario = (DtoUsuario) getSession().getAttribute("usuario");
+		if(usuario != null) {
+			UsuarioWindow window = new UsuarioWindow(facadeDados, usuario);
+			this.adicionarJanela(window);
+		}
 	}
 	
 	protected void sair(Button.ClickEvent event) {
