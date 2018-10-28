@@ -1,6 +1,7 @@
 package com.desafio.Banco.views;
 
 import com.desafio.Banco.BancoUI;
+import com.desafio.Banco.dtos.DtoUsuario;
 import com.desafio.Banco.layouts.PrincipalLayout;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -16,10 +17,10 @@ public class PrincipalView extends VerticalLayout implements View {
 	private BancoUI ui = (BancoUI) UI.getCurrent();
 	private MenuItem item;
 
-	public PrincipalView() {
-		PrincipalLayout principalLayout = new PrincipalLayout();
+	public PrincipalView(DtoUsuario usuario) {
+		PrincipalLayout principalLayout = new PrincipalLayout(usuario);
 		principalLayout.setMargin(false);
-		principalLayout.setSizeUndefined();
+		principalLayout.setSizeFull();
 		addComponent(principalLayout);
 		setComponentAlignment(principalLayout, Alignment.MIDDLE_CENTER);
 		setSizeFull();

@@ -7,19 +7,28 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 
+import com.desafio.Banco.dtos.DtoTipoTransacao;
 import com.desafio.Banco.dtos.DtoTipoUsuario;
+import com.desafio.Banco.dtos.DtoTransacao;
 import com.desafio.Banco.dtos.DtoUsuario;
+import com.desafio.Banco.utils.BancoUtil;
 import com.desafio.BancoModel.daos.DaoConta;
+import com.desafio.BancoModel.daos.DaoTiposTransacoes;
 import com.desafio.BancoModel.daos.DaoTiposUsuarios;
+import com.desafio.BancoModel.daos.DaoTransacao;
 import com.desafio.BancoModel.daos.DaoUsuario;
 import com.desafio.BancoModel.model.Conta;
+import com.desafio.BancoModel.model.TiposTransacoes;
+import com.desafio.BancoModel.model.Transacao;
 import com.desafio.BancoModel.model.Usuario;
 
-public class FacadeUsuario {
+public class FacadeTransacao {
 	DaoConta daoConta = new DaoConta();
 	DaoUsuario daoUsuario = new DaoUsuario();
 	DaoTiposUsuarios daoTiposUsuarios = new DaoTiposUsuarios();
-	public FacadeUsuario() {
+	DaoTransacao daoTransacao = new DaoTransacao();
+	DaoTiposTransacoes daoTiposTransacoes = new DaoTiposTransacoes();
+	public FacadeTransacao() {
 
 	}
 
@@ -76,7 +85,7 @@ public class FacadeUsuario {
 			usuarioDb.setEndereco(usuario.getEndereco().trim());
 			usuarioDb.setNascimento(usuario.getNascimento().getTime());
 			usuarioDb.setEmail(usuario.getEmail().trim().equals("") ? null : usuario.getEmail().trim());
-			usuarioDb.setConta(daoConta.findByID(Integer.valueOf(usuario.getNumConta())));
+			usuarioDb.setConta(daoConta.findByID(usuario.getNumConta()));
 			usuarioDb.setTipoUsuario(daoTiposUsuarios.findByID(usuario.getTipoUsuarioId()));
 			daoUsuario.save(usuarioDb);
 			criarSenha(usuario, usuario.getSenha());
@@ -127,5 +136,35 @@ public class FacadeUsuario {
 
 	public Conta getConta(Integer numConta) {
 		return daoConta.findByID(numConta);
+	}
+
+	public ArrayList<DtoTransacao> getTransacoesUsuario() {
+		ArrayList<DtoTransacao> list = new ArrayList<DtoTransacao>();
+		return list;
+	}
+
+	public boolean contaValida(String numConta) {
+		return daoConta.findByID(Integer.valueOf(numConta)) != null;
+	}
+	
+	public void salvarTransacao(DtoTransacao transacao) {
+		Transacao t = new Transacao();
+		TiposTransacoes tt = daoTiposTransacoes.findByID(transacao.getTipoTransacaoNome());
+		DtoTipoTransacao tipoTransacao = new DtoTipoTransacao(tt);
+		t.setValor(transacao.getValor());
+		t.setTipoTransacao(tt);
+		if(tipoTransacao.utilizaOrigem()) {
+			Conta contaOrigem = daoConta.findByID(Integer.valueOf(transacao.getContaOrigem()));
+			t.setContaOrigem(contaOrigem);
+			contaOrigem.setSaldo(BancoUtil.fixCasasDecimais(contaOrigem.getSaldo() - t.getValor()));
+			daoConta.save(contaOrigem);			
+		}
+		if(tipoTransacao.utilizaDestino()) {
+			Conta contaDestino = daoConta.findByID(Integer.valueOf(transacao.getContaDestino()));
+			t.setContaDestino(contaDestino);
+			contaDestino.setSaldo(BancoUtil.fixCasasDecimais(contaDestino.getSaldo() + t.getValor()));
+			daoConta.save(contaDestino);
+		}
+		daoTransacao.save(t);
 	}
 }

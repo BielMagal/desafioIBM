@@ -1,5 +1,9 @@
 package com.desafio.Banco.utils;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+
 import org.vaadin.textfieldformatter.CustomStringBlockFormatter;
 import org.vaadin.textfieldformatter.CustomStringBlockFormatter.Options;
 
@@ -74,5 +78,18 @@ public class BancoUtil {
 			return false;
 		}
 		return true;
+	}
+	
+	public static Double stringVirgulaToDouble(String valor) {
+		try {
+			return NumberFormat.getInstance(Locale.FRANCE).parse(valor).doubleValue();
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return -1d;
+		}
+	}
+	
+	public static Double fixCasasDecimais(Double num) {
+		return Math.floor(num * 100 + 0.5) / 100;
 	}
 }

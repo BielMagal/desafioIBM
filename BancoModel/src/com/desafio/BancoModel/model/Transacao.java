@@ -5,11 +5,13 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,7 +25,15 @@ import javax.persistence.TemporalType;
 public class Transacao implements Serializable, EntidadeBase {
 	private static final long serialVersionUID = 1L;
 
-	@Id @GeneratedValue
+	@Id
+	@TableGenerator(name="Transacao_Gen", 
+	table="id_gen", 
+	pkColumnName="id_name", 
+	valueColumnName="id_val", 
+	pkColumnValue="TransacaoAtualId",
+	allocationSize=1,
+	initialValue=1)
+	@GeneratedValue(strategy = GenerationType.TABLE, generator="Transacao_Gen")
 	private Integer id;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -84,5 +94,13 @@ public class Transacao implements Serializable, EntidadeBase {
 
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+
+	public TiposTransacoes getTipoTransacao() {
+		return tipoTransacao;
+	}
+
+	public void setTipoTransacao(TiposTransacoes tipoTransacao) {
+		this.tipoTransacao = tipoTransacao;
 	}
 }

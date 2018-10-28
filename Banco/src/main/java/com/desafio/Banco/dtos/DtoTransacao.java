@@ -1,6 +1,10 @@
 package com.desafio.Banco.dtos;
 
+import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.Date;
+
+import com.desafio.Banco.utils.BancoUtil;
 
 public class DtoTransacao {
 	
@@ -19,13 +23,13 @@ public class DtoTransacao {
 
 	private DtoTipoTransacao tipoTransacao;
 	
-	private Integer contaOrigem;
+	private String contaOrigem;
 
-	private Integer contaDestino;
+	private String contaDestino;
 	
-	private Integer usuarioOrigem;
+	private String usuarioOrigem;
 
-	private Integer usuarioDestino;
+	private String usuarioDestino;
 	
 	private Double valor;
 
@@ -33,7 +37,7 @@ public class DtoTransacao {
 
 	}
 
-	public DtoTransacao(Integer id, Calendar data, DtoTipoTransacao tipoTransacao, Integer contaOrigem, Integer contaDestino, Integer usuarioOrigem, Integer usuarioDestino, Double valor) {
+	public DtoTransacao(Integer id, Calendar data, DtoTipoTransacao tipoTransacao, String contaOrigem, String contaDestino, String usuarioOrigem, String usuarioDestino, Double valor) {
 		this.id = id;
 		this.data = data;
 		this.tipoTransacao = tipoTransacao;
@@ -52,8 +56,12 @@ public class DtoTransacao {
 		this.id = id;
 	}
 
-	public Calendar getData() {
+	public Calendar getDataCalendar() {
 		return data;
+	}
+
+	public Date getData() {
+		return data.getTime();
 	}
 
 	public void setData(Calendar data) {
@@ -64,39 +72,43 @@ public class DtoTransacao {
 		return tipoTransacao;
 	}
 
+	public String getTipoTransacaoNome() {
+		return tipoTransacao.getTipo();
+	}
+
 	public void setTipoTransacao(DtoTipoTransacao tipoTransacao) {
 		this.tipoTransacao = tipoTransacao;
 	}
 
-	public Integer getContaOrigem() {
+	public String getContaOrigem() {
 		return contaOrigem;
 	}
 
-	public void setContaOrigem(Integer contaOrigem) {
+	public void setContaOrigem(String contaOrigem) {
 		this.contaOrigem = contaOrigem;
 	}
 
-	public Integer getContaDestino() {
+	public String getContaDestino() {
 		return contaDestino;
 	}
 
-	public void setContaDestino(Integer contaDestino) {
+	public void setContaDestino(String contaDestino) {
 		this.contaDestino = contaDestino;
 	}
 
-	public Integer getUsuarioOrigem() {
+	public String getUsuarioOrigem() {
 		return usuarioOrigem;
 	}
 
-	public void setUsuarioOrigem(Integer usuarioOrigem) {
+	public void setUsuarioOrigem(String usuarioOrigem) {
 		this.usuarioOrigem = usuarioOrigem;
 	}
 
-	public Integer getUsuarioDestino() {
+	public String getUsuarioDestino() {
 		return usuarioDestino;
 	}
 
-	public void setUsuarioDestino(Integer usuarioDestino) {
+	public void setUsuarioDestino(String usuarioDestino) {
 		this.usuarioDestino = usuarioDestino;
 	}
 
@@ -104,7 +116,19 @@ public class DtoTransacao {
 		return valor;
 	}
 
+	public String getValorFormatado() {
+		return NumberFormat.getCurrencyInstance().format(valor);
+	}
+
+	public String getValorString() {
+		return valor != null? valor.toString() : null;
+	}
+
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+
+	public void setValorString(String valor) {
+		this.valor =  BancoUtil.stringVirgulaToDouble((valor));
 	}
 }

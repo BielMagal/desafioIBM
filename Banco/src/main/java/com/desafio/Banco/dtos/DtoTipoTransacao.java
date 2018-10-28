@@ -1,5 +1,7 @@
 package com.desafio.Banco.dtos;
 
+import com.desafio.BancoModel.model.TiposTransacoes;
+
 public class DtoTipoTransacao {
 
 	public static final String F_TIPO = "Tipo de transação";
@@ -20,6 +22,12 @@ public class DtoTipoTransacao {
 		this.tipo = tipo;
 		this.descricao = descricao;
 		this.camposUtilizados = camposUtilizados;
+	}
+
+	public DtoTipoTransacao(TiposTransacoes tt) {
+		this.tipo = tt.getTipo();
+		this.descricao = tt.getDescricao();
+		this.camposUtilizados = tt.getCamposUtilizados();
 	}
 
 	public String getTipo() {

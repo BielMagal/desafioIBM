@@ -15,7 +15,15 @@ import javax.persistence.*;
 public class Conta implements Serializable, EntidadeBase {
 	private static final long serialVersionUID = 1L;
 
-	@Id @GeneratedValue
+	@Id
+	@TableGenerator(name="Conta_Gen", 
+	table="id_gen", 
+	pkColumnName="id_name", 
+	valueColumnName="id_val", 
+	pkColumnValue="ContaAtualId",
+	allocationSize=1,
+	initialValue=1)
+	@GeneratedValue(strategy = GenerationType.TABLE, generator="Conta_Gen")
 	private Integer id;
 
 	private String usuario;

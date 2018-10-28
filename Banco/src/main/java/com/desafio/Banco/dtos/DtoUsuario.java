@@ -25,7 +25,7 @@ public class DtoUsuario {
 
 	private Calendar nascimento;
 	
-	private Integer numConta;
+	private String numConta;
 
 	private DtoTipoUsuario tipoUsuario;
 
@@ -33,7 +33,7 @@ public class DtoUsuario {
 
 	}
 
-	public DtoUsuario(String cpf, String nome, String endereco, String email, String senha, Calendar nascimento, Integer numConta, DtoTipoUsuario tipoUsuario) {
+	public DtoUsuario(String cpf, String nome, String endereco, String email, String senha, Calendar nascimento, String numConta, DtoTipoUsuario tipoUsuario) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.endereco = endereco;
@@ -92,11 +92,11 @@ public class DtoUsuario {
 		this.nascimento = nascimento;
 	}
 
-	public Integer getNumConta() {
+	public String getNumConta() {
 		return numConta;
 	}
 
-	public void setNumConta(Integer numConta) {
+	public void setNumConta(String numConta) {
 		this.numConta = numConta;
 	}
 

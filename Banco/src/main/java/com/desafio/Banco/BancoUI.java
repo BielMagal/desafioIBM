@@ -10,7 +10,6 @@ import com.desafio.Banco.views.LoginView;
 import com.desafio.Banco.views.PrincipalView;
 import com.desafio.Banco.views.RelatorioView;
 import com.desafio.Banco.views.SaldoContasView;
-import com.desafio.Banco.views.TransacaoView;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.event.UIEvents.PollEvent;
@@ -30,6 +29,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.VerticalSplitPanel;
+import com.vaadin.ui.Window;
 
 @Theme("BancoTheme")
 public class BancoUI extends UI {
@@ -165,15 +165,12 @@ public class BancoUI extends UI {
     	removerViews();
 		DtoUsuario usuario = (DtoUsuario) getSession().getAttribute("usuario");
 		menu.removeItems();
+		menu.setVisible(false);
 		if(usuario != null) {
-			PrincipalView principalView = new PrincipalView();
+			PrincipalView principalView = new PrincipalView(usuario);
 			principalView.setMenuItem(menu.addItem("Principal", null, comando));
 			viewVisiveis.put("Principal", "principal");
 			navegador.addView("principal", principalView);
-			TransacaoView transacaoView = new TransacaoView();
-			transacaoView.setMenuItem(menu.addItem("Transação", null, comando));
-			viewVisiveis.put("Transação", "transacao");
-			navegador.addView("transacao", transacaoView);
 			if(usuario.usuarioGerente()) {
 				RelatorioView relatorioView = new RelatorioView();
 				relatorioView.setMenuItem(menu.addItem("Relatório", null, comando));
@@ -183,15 +180,14 @@ public class BancoUI extends UI {
 				saldoContasView.setMenuItem(menu.addItem("Saldos de contas", null, comando));
 				viewVisiveis.put("Saldos de contas", "saldo");
 				navegador.addView("saldo", saldoContasView);
+				menu.setVisible(true);
 			}
-			menu.setVisible(true);
 			labelCabecalho.setCaption("Olá " + usuario.getNome() + ", bem vindo!");
 			navegador.navigateTo("principal");
 			navegador.setErrorView(principalView);
 		}else {
 			navegador.addView("login", loginView);
 			navegador.setErrorView(loginView);
-			menu.setVisible(false);
 			labelCabecalho.setCaption("");
 			navegador.navigateTo("login");
 		}
@@ -231,6 +227,19 @@ public class BancoUI extends UI {
 		navegadorEsquerda.setSplitPosition(porcentagem, Unit.PERCENTAGE);
 	}
 
+	public void adicionarJanela(Window window) {
+		this.access(new Runnable() {
+			@Override
+			public void run() {
+				if (!window.isModal()) {
+					window.setModal(true);
+				}
+				addWindow(window);
+				window.focus();
+			}
+		});
+	}
+	
 	@WebServlet(urlPatterns = "/*", name = "BancoUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = BancoUI.class, productionMode = false)
     public static class BancoUIServlet extends VaadinServlet {
