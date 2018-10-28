@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.Locale;
 
 import org.vaadin.textfieldformatter.CustomStringBlockFormatter;
+import org.vaadin.textfieldformatter.NumeralFieldFormatter;
 import org.vaadin.textfieldformatter.CustomStringBlockFormatter.Options;
 
 import com.vaadin.data.ValidationResult;
@@ -26,7 +27,18 @@ public class BancoUtil {
 	public static PasswordValidator getPasswordValidator() {
 		return new PasswordValidator();
 	}
-
+	
+	public static void setContaField(TextField field) {
+		Options options = new Options();
+		options.setBlocks(9);
+		options.setNumericOnly(true);
+		new CustomStringBlockFormatter(options).extend(field);
+	}
+	
+	public static void setValueField(TextField field) {
+		new NumeralFieldFormatter("", ",", 2).extend(field);
+	}
+	
 	static class OptionalMailValidator implements Validator<String> {
 		private static final long serialVersionUID = 1L;
 

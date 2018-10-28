@@ -15122,19 +15122,19 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .BancoTheme .v-grid-row.positivo > td {
-	background-color: #8ae26d;
-	color: black;
-	font-weight: bolder;
-}
-
-.BancoTheme .v-grid-row.negativo > td {
-	background-color: #e26d6d;
+	background-color: #a3eb9e;
 	color: black;
 	font-weight: bolder;
 }
 
 .BancoTheme .v-grid-row.neutro > td {
-	background-color: #f1db4c;
+	background-color: #ebd69e;
+	color: black;
+	font-weight: bolder;
+}
+
+.BancoTheme .v-grid-row.negativo > td {
+	background-color: #eb9e9e;
 	color: black;
 	font-weight: bolder;
 }

@@ -53,14 +53,15 @@ public class UsuariosLayout extends VerticalLayout{
 		
 		gridContas.addStringColumn(DtoUsuario::getCpf,DtoUsuario.F_CPF,150).setWidthUndefined();
 		gridContas.addStringColumn(DtoUsuario::getNome,DtoUsuario.F_NOME,150).setWidthUndefined();
+		gridContas.addStringColumn(DtoUsuario::getNumConta,DtoUsuario.F_CONTA,150).setWidthUndefined();
+		gridContas.addStringColumn(DtoUsuario::getTipoUsuarioDescricao,DtoUsuario.F_TIPO_USUARIO,150).setWidthUndefined();
 		gridContas.addStringColumn(DtoUsuario::getEmail,DtoUsuario.F_EMAIL,150).setWidthUndefined();
 		gridContas.addStringColumn(DtoUsuario::getEndereco,DtoUsuario.F_ENDERECO,150).setWidthUndefined();
 		gridContas.addDateColumn(DtoUsuario::getNascimentoData,DtoUsuario.F_NASCIMENTO,150).setWidthUndefined();
-		gridContas.addStringColumn(DtoUsuario::getNumConta,DtoUsuario.F_CONTA,150).setWidthUndefined();
-		gridContas.addStringColumn(DtoUsuario::getTipoUsuarioDescricao,DtoUsuario.F_TIPO_USUARIO,150).setWidthUndefined();
 		gridContas.addBotaoReset("Resetar Senha", 150).setWidthUndefined();
 		
 		gridContas.setSortOrder(GridSortOrder.asc(gridContas.getColumn(DtoUsuario.F_NOME)));
+		gridContas.criarFiltros();
 		gridContas.setSizeFull();
 	}
 

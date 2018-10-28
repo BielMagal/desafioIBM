@@ -129,6 +129,7 @@ public class PrincipalLayout extends HorizontalLayout{
 				return "positivo";
 			return "negativo";
 		});
+		gridTransacoes.criarFiltros();
 		gridTransacoes.setSizeFull();
 	}
 

@@ -90,17 +90,17 @@
 		padding: 0px;
 	}
 	.v-grid-row.positivo > td{
-	    background-color: #8ae26d;
+	    background-color: #a3eb9e;
 	    color: black;
 		font-weight: bolder;
     }
-    .v-grid-row.negativo > td{
-    	background-color: #e26d6d;
+    .v-grid-row.neutro > td{
+    	background-color: #ebd69e;
     	color: black;
 		font-weight: bolder;
 	}
-    .v-grid-row.neutro > td{
-    	background-color: #f1db4c;
+    .v-grid-row.negativo > td{
+    	background-color: #eb9e9e;
     	color: black;
 		font-weight: bolder;
 	}

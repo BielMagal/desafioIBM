@@ -90,6 +90,7 @@ public class RelatorioLayout extends HorizontalLayout{
 			else
 				return "neutro";
 		});
+		gridTransacoes.criarFiltros();
 	}
 
 	public void update() {

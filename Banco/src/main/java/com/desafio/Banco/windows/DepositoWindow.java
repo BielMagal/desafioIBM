@@ -2,8 +2,6 @@ package com.desafio.Banco.windows;
 
 import java.util.Calendar;
 
-import org.vaadin.textfieldformatter.NumeralFieldFormatter;
-
 import com.desafio.Banco.dtos.DtoTipoTransacao;
 import com.desafio.Banco.dtos.DtoTransacao;
 import com.desafio.Banco.facades.FacadeDados;
@@ -48,7 +46,7 @@ public class DepositoWindow extends Window {
 		layoutBtns.setSpacing(true);
 
 		valor = new TextField("Valor para depósito");
-		new NumeralFieldFormatter("", ",", 2).extend(valor);
+		BancoUtil.setValueField(valor);
 		valor.setRequiredIndicatorVisible(true);
 
 		binder = new Binder<>();

@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 import org.vaadin.textfieldformatter.CustomStringBlockFormatter;
 import org.vaadin.textfieldformatter.CustomStringBlockFormatter.Options;
-import org.vaadin.textfieldformatter.NumeralFieldFormatter;
 
 import com.desafio.Banco.dtos.DtoTipoTransacao;
 import com.desafio.Banco.dtos.DtoTransacao;
@@ -56,7 +55,7 @@ public class TransferenciaWindow extends Window {
 		options.setNumericOnly(true);
 		new CustomStringBlockFormatter(options).extend(contaDestino);
 		valor = new TextField("Valor para transferência");
-		new NumeralFieldFormatter("", ",", 2).extend(valor);
+		BancoUtil.setValueField(valor);
 		valor.setRequiredIndicatorVisible(true);
 
 		binder = new Binder<>();

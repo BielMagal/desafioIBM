@@ -48,6 +48,7 @@ public class SaldoContasLayout extends VerticalLayout{
 		gridContas.addStringColumn(DtoConta::getSaldoFormatado,DtoConta.F_SALDO,150).setWidthUndefined();
 		
 		gridContas.setSortOrder(GridSortOrder.asc(gridContas.getColumn(DtoConta.F_ID)));
+		gridContas.criarFiltros();
 		gridContas.setSizeFull();
 	}
 
