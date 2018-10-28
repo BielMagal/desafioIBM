@@ -1,5 +1,7 @@
 package com.desafio.Banco.dtos;
 
+import com.desafio.BancoModel.model.TiposUsuarios;
+
 public class DtoTipoUsuario {
 
 	public static final String F_ID = "Código";
@@ -16,6 +18,11 @@ public class DtoTipoUsuario {
 	public DtoTipoUsuario(Integer id, String descricao) {
 		this.id = id;
 		this.descricao = descricao;
+	}
+
+	public DtoTipoUsuario(TiposUsuarios tu) {
+		this.id = tu.getId();
+		this.descricao = tu.getDescricao();
 	}
 
 	public Integer getId() {

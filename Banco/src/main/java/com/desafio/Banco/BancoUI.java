@@ -11,6 +11,7 @@ import com.desafio.Banco.views.LoginView;
 import com.desafio.Banco.views.PrincipalView;
 import com.desafio.Banco.views.RelatorioView;
 import com.desafio.Banco.views.SaldoContasView;
+import com.desafio.Banco.views.UsuariosView;
 import com.desafio.Banco.windows.UsuarioWindow;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -183,6 +184,10 @@ public class BancoUI extends UI {
 				saldoContasView.setMenuItem(menu.addItem("Saldos de contas", null, comando));
 				viewVisiveis.put("Saldos de contas", "saldo");
 				navegador.addView("saldo", saldoContasView);
+				UsuariosView usuariosView = new UsuariosView();
+				usuariosView.setMenuItem(menu.addItem("Gerenciar Usuários", null, comando));
+				viewVisiveis.put("Gerenciar Usuários", "usuarios");
+				navegador.addView("usuarios", usuariosView);
 				menu.setVisible(true);
 			}
 			labelCabecalho.setCaption("Olá " + usuario.getNome() + ", bem vindo!");

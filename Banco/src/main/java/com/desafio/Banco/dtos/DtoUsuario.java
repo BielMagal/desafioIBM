@@ -1,6 +1,9 @@
 package com.desafio.Banco.dtos;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DtoUsuario {
 	
@@ -88,8 +91,21 @@ public class DtoUsuario {
 		return nascimento;
 	}
 
+	public Date getNascimentoData() {
+		return nascimento != null? nascimento.getTime() : null;
+	}
+	
+	public LocalDate getLocalDate() {
+		return nascimento != null? getNascimentoData().toInstant().atZone(ZoneId.systemDefault()).toLocalDate() : null;
+	}
+
 	public void setNascimento(Calendar nascimento) {
 		this.nascimento = nascimento;
+	}
+	
+	public void setLocalDate(LocalDate date) {
+		this.nascimento = Calendar.getInstance();
+		nascimento.setTime(Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 	}
 
 	public String getNumConta() {

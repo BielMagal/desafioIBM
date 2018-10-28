@@ -2,7 +2,6 @@ package com.desafio.Banco.utils;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 
 import com.desafio.Banco.dtos.DtoConta;
 import com.vaadin.data.ValueProvider;
@@ -18,7 +17,6 @@ public class GridContas extends Grid<DtoConta> {
 	ArrayList<DtoConta> items = new ArrayList<>();
 	ListDataProvider<DtoConta> provider;
 	HeaderRow filteringHeader;
-	Locale ptBr = new Locale("pt", "BR");
 
 	public GridContas() {
 		super();

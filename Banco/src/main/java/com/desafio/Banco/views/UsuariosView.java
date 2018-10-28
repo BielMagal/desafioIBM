@@ -1,7 +1,7 @@
 package com.desafio.Banco.views;
 
 import com.desafio.Banco.BancoUI;
-import com.desafio.Banco.layouts.RelatorioLayout;
+import com.desafio.Banco.layouts.UsuariosLayout;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
@@ -10,19 +10,19 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 
-public class RelatorioView extends VerticalLayout implements View {
+public class UsuariosView extends VerticalLayout implements View {
 	private static final long serialVersionUID = 1L;
 
 	private BancoUI ui = (BancoUI) UI.getCurrent();
 	private MenuItem item;
-	private RelatorioLayout relatorioLayout;
-
-	public RelatorioView() {
-		relatorioLayout = new RelatorioLayout();
-		relatorioLayout.setMargin(false);
-		relatorioLayout.setSizeFull();
-		addComponent(relatorioLayout);
-		setComponentAlignment(relatorioLayout, Alignment.MIDDLE_CENTER);
+	private UsuariosLayout usuarioLayout;
+	
+	public UsuariosView() {
+		usuarioLayout = new UsuariosLayout();
+		usuarioLayout.setMargin(false);
+		usuarioLayout.setSizeFull();
+		addComponent(usuarioLayout);
+		setComponentAlignment(usuarioLayout, Alignment.MIDDLE_CENTER);
 		setSizeFull();
 		setMargin(false);
 	}
@@ -37,6 +37,6 @@ public class RelatorioView extends VerticalLayout implements View {
 		ui.setItemSelecionado(item);
 		ui.setDivisaoPainel(0);
 		ui.setDivisaoNavegador(100);
-		relatorioLayout.update();
+		usuarioLayout.update();
 	}
 }

@@ -21,6 +21,7 @@ import com.desafio.BancoModel.daos.DaoTransacao;
 import com.desafio.BancoModel.daos.DaoUsuario;
 import com.desafio.BancoModel.model.Conta;
 import com.desafio.BancoModel.model.TiposTransacoes;
+import com.desafio.BancoModel.model.TiposUsuarios;
 import com.desafio.BancoModel.model.Transacao;
 import com.desafio.BancoModel.model.Usuario;
 
@@ -76,7 +77,7 @@ public class FacadeDados {
 		return true;
 	}
 
-	public boolean salvarUsuario(DtoUsuario usuario) {
+	public boolean salvarUsuario(DtoUsuario usuario, boolean novoUsuario) {
 		try {
 			Usuario usuarioDb = getUsuarioDB(usuario.getCpf());
 			if (usuarioDb == null) {
@@ -87,7 +88,16 @@ public class FacadeDados {
 			usuarioDb.setEndereco(usuario.getEndereco().trim());
 			usuarioDb.setNascimento(usuario.getNascimento().getTime());
 			usuarioDb.setEmail(usuario.getEmail().trim().equals("") ? null : usuario.getEmail().trim());
-			usuarioDb.setConta(daoConta.findByID(Integer.valueOf(usuario.getNumConta())));
+			if(novoUsuario) {
+				Conta c = new Conta();
+				c.setCriacao(new Date(System.currentTimeMillis()));
+				c.setSaldo(0d);
+				c.setUsuario(usuario.getCpf());
+				c = daoConta.save(c);
+				usuarioDb.setConta(c);
+			}				
+			else
+				usuarioDb.setConta(daoConta.findByID(Integer.valueOf(usuario.getNumConta())));
 			usuarioDb.setTipoUsuario(daoTiposUsuarios.findByID(usuario.getTipoUsuarioId()));
 			daoUsuario.save(usuarioDb);
 			if(usuarioDb.getSenha() != null && !usuarioDb.getSenha().equals(usuario.getSenha()))
@@ -195,6 +205,14 @@ public class FacadeDados {
 			if(u != null)
 				dc.setNomeCliente(u.getNome());
 			list.add(dc);
+		}
+		return list;
+	}
+
+	public ArrayList<DtoTipoUsuario> getTiposUsuarios() {
+		ArrayList<DtoTipoUsuario> list = new ArrayList<DtoTipoUsuario>();
+		for(TiposUsuarios tu : daoTiposUsuarios.findAll()){
+			list.add(new DtoTipoUsuario(tu));
 		}
 		return list;
 	}
