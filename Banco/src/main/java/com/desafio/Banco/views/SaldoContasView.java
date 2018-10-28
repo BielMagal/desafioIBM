@@ -15,11 +15,12 @@ public class SaldoContasView extends VerticalLayout implements View {
 
 	private BancoUI ui = (BancoUI) UI.getCurrent();
 	private MenuItem item;
-
+	private SaldoContasLayout saldoContasLayout;
+	
 	public SaldoContasView() {
-		SaldoContasLayout saldoContasLayout = new SaldoContasLayout();
+		saldoContasLayout = new SaldoContasLayout();
 		saldoContasLayout.setMargin(false);
-		saldoContasLayout.setSizeUndefined();
+		saldoContasLayout.setSizeFull();
 		addComponent(saldoContasLayout);
 		setComponentAlignment(saldoContasLayout, Alignment.MIDDLE_CENTER);
 		setSizeFull();
@@ -36,5 +37,6 @@ public class SaldoContasView extends VerticalLayout implements View {
 		ui.setItemSelecionado(item);
 		ui.setDivisaoPainel(0);
 		ui.setDivisaoNavegador(100);
+		saldoContasLayout.update();
 	}
 }

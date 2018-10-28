@@ -1,6 +1,10 @@
 package com.desafio.Banco.dtos;
 
+import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.Date;
+
+import com.desafio.BancoModel.model.Conta;
 
 public class DtoConta {
 	
@@ -8,10 +12,9 @@ public class DtoConta {
 	public static final String F_CPF_CLIENTE = "CPF cliente";
 	public static final String F_NOME_CLIENTE = "Nome cliente";
 	public static final String F_CRIACAO = "Data de criação";
-	public static final String F_ULTIMA_TRANSACAO = "Última transação";
 	public static final String F_SALDO = "Saldo atual";
 
-	private Integer id;
+	private String id;
 
 	private String cpfCliente;
 	
@@ -19,28 +22,33 @@ public class DtoConta {
 	
 	private Calendar criacao;
 
-	private Calendar ultimaTransacao;
-
 	private Double saldo;
 
 	public DtoConta() {
 
 	}
 
-	public DtoConta(Integer id, String cpfCliente, String nomeCliente, Calendar criacao, Calendar ultimaTransacao, Double saldo) {
+	public DtoConta(String id, String cpfCliente, String nomeCliente, Calendar criacao, Double saldo) {
 		this.id = id;
 		this.cpfCliente = cpfCliente;
 		this.nomeCliente = nomeCliente;
 		this.criacao = criacao;
-		this.ultimaTransacao = ultimaTransacao;
 		this.saldo = saldo;
 	}
 
-	public Integer getId() {
+	public DtoConta(Conta c) {
+		this.id = c.getStringId();
+		this.cpfCliente = c.getUsuario();
+		this.criacao = Calendar.getInstance();
+		criacao.setTime(c.getCriacao());
+		this.saldo = c.getSaldo();
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -64,24 +72,24 @@ public class DtoConta {
 		return criacao;
 	}
 
+	public Date getCriacaoData() {
+		return criacao.getTime();
+	}
+
 	public void setCriacao(Calendar criacao) {
 		this.criacao = criacao;
 	}
 
-	public Calendar getUltimaTransacao() {
-		return ultimaTransacao;
-	}
-
-	public void setUltimaTransacao(Calendar ultimaTransacao) {
-		this.ultimaTransacao = ultimaTransacao;
-	}
-
-	public Double getSaldo() {
+		public Double getSaldo() {
 		return saldo;
 	}
 
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
+	}
+
+	public String getSaldoFormatado() {
+		return NumberFormat.getCurrencyInstance().format(saldo);
 	}
 	
 }

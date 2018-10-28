@@ -10,6 +10,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
@@ -25,8 +26,15 @@ public class LoginView extends VerticalLayout implements View {
 	private Button btnLogin;
 	private FacadeDados facadeDados = new FacadeDados();
 	private BancoUI ui = (BancoUI) UI.getCurrent();
+	private Label bancoLabel;
+	private Label mensagemLabel;
 
 	public LoginView() {
+		bancoLabel = new Label("Banco do Gabriel");
+		bancoLabel.setStyleName("msg-banco");
+		mensagemLabel = new Label("Utilize seu CPF e Senha para entrar. Se não possuir uma conta entre em contato com um de nossos gerentes.");
+		mensagemLabel.setStyleName("msg-inicial");
+		mensagemLabel.setWidth("450px");
 		campoCPF = new TextField("CPF:");
 		campoCPF.setWidth("300px");
 		campoCPF.setRequiredIndicatorVisible(true);
@@ -47,12 +55,19 @@ public class LoginView extends VerticalLayout implements View {
 		btnLogin = new Button("Entrar", event -> {
 			login(campoCPF.getValue(), campoSenha.getValue());
 		});
-		VerticalLayout layout = new VerticalLayout(campoCPF,campoSenha,btnLogin);
-		layout.setMargin(false);
-		layout.setSizeUndefined();
-		addComponent(layout);
-		setComponentAlignment(layout, Alignment.MIDDLE_CENTER);
-		setSizeFull();
+		btnLogin.setWidth("300px");
+		VerticalLayout layout1 = new VerticalLayout(bancoLabel, mensagemLabel);
+		layout1.setComponentAlignment(bancoLabel, Alignment.TOP_CENTER);
+		layout1.setComponentAlignment(mensagemLabel, Alignment.TOP_CENTER);
+		layout1.setHeight("220px");
+		VerticalLayout layout2 = new VerticalLayout(campoCPF,campoSenha,btnLogin);
+		layout2.setComponentAlignment(campoCPF, Alignment.MIDDLE_CENTER);
+		layout2.setComponentAlignment(campoSenha, Alignment.MIDDLE_CENTER);
+		layout2.setComponentAlignment(btnLogin, Alignment.MIDDLE_CENTER);
+		VerticalLayout layout3 = new VerticalLayout(layout1, layout2);
+		addComponent(layout3);
+		setComponentAlignment(layout3, Alignment.MIDDLE_CENTER);
+		setHeight(100, Unit.PERCENTAGE);
 		setMargin(false);
 	}
 

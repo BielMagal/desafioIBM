@@ -173,8 +173,8 @@ public class BancoUI extends UI {
 			navegador.addView("principal", principalView);
 			if(usuario.usuarioGerente()) {
 				RelatorioView relatorioView = new RelatorioView();
-				relatorioView.setMenuItem(menu.addItem("Relatório", null, comando));
-				viewVisiveis.put("Relatório", "relatorio");
+				relatorioView.setMenuItem(menu.addItem("Relatório de transações", null, comando));
+				viewVisiveis.put("Relatório de transações", "relatorio");
 				navegador.addView("relatorio", relatorioView);
 				SaldoContasView saldoContasView = new SaldoContasView();
 				saldoContasView.setMenuItem(menu.addItem("Saldos de contas", null, comando));

@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
+import com.desafio.Banco.dtos.DtoConta;
 import com.desafio.Banco.dtos.DtoTipoTransacao;
 import com.desafio.Banco.dtos.DtoTipoUsuario;
 import com.desafio.Banco.dtos.DtoTransacao;
@@ -183,5 +184,17 @@ public class FacadeDados {
 		}
 		t.setData(new Date(System.currentTimeMillis()));
 		daoTransacao.save(t);
+	}
+
+	public ArrayList<DtoConta> getContas() {
+		ArrayList<DtoConta> list = new ArrayList<DtoConta>();
+		for(Conta c : daoConta.findAll()){
+			DtoConta dc = new DtoConta(c);
+			Usuario u = daoUsuario.findByID(c.getUsuario());
+			if(u != null)
+				dc.setNomeCliente(u.getNome());
+			list.add(dc);
+		}
+		return list;
 	}
 }

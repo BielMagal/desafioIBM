@@ -91,8 +91,10 @@ public class PrincipalLayout extends HorizontalLayout{
 
 		fieldInicio = new DateField("Início");
 		fieldInicio.setValue(LocalDate.now().minusDays(7));
+		fieldInicio.setDateFormat("dd/MM/yyyy");
 		fieldFim = new DateField("Fim");
 		fieldFim.setValue(LocalDate.now());
+		fieldFim.setDateFormat("dd/MM/yyyy");
 		btnGerar = new Button("");
 		btnGerar.setIcon(new FileResource(new File(pastaIcones + "/gerar.png")));
 		btnGerar.setWidth("30px");
