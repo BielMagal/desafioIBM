@@ -15086,8 +15086,40 @@ div.v-layout.v-horizontal.v-widget {
 	color: white;
 }
 
-.BancoTheme .bem-vindo {
+.BancoTheme .v-caption-bem-vindo {
 	padding-left: 10px;
 	padding-top: 10px;
 	font-size: 20px;
+}
+
+.BancoTheme .button-meta {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	padding: 0;
+	height: 30px;
+	width: 100%;
+	font-size: 12px;
+}
+
+.BancoTheme .button-meta:focus:after {
+	border: none;
+	box-shadow: none;
+}
+
+.BancoTheme .button-meta img {
+	height: 30px;
+	padding: 0px;
+}
+
+.BancoTheme .v-grid-row.positivo > td {
+	background-color: #8ae26d !important;
+	color: black;
+	font-weight: bolder;
+}
+
+.BancoTheme .v-grid-row.negativo > td {
+	background-color: #e26d6d !important;
+	color: black;
+	font-weight: bolder;
 }

@@ -2,7 +2,7 @@ package com.desafio.Banco.views;
 
 import com.desafio.Banco.BancoUI;
 import com.desafio.Banco.dtos.DtoUsuario;
-import com.desafio.Banco.facades.FacadeUsuario;
+import com.desafio.Banco.facades.FacadeDados;
 import com.desafio.Banco.utils.BancoUtil;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.event.ShortcutListener;
@@ -23,7 +23,7 @@ public class LoginView extends VerticalLayout implements View {
 	private TextField campoCPF;
 	private PasswordField campoSenha;
 	private Button btnLogin;
-	private FacadeUsuario facadeUsuario = new FacadeUsuario();
+	private FacadeDados facadeDados = new FacadeDados();
 	private BancoUI ui = (BancoUI) UI.getCurrent();
 
 	public LoginView() {
@@ -74,7 +74,7 @@ public class LoginView extends VerticalLayout implements View {
 	private void login(String cpf, String senha) {
 		if (cpf == null || senha == null || senha.equals("") || cpf.equals(""))
 			return;
-		DtoUsuario usuario = facadeUsuario.verificarCPFSenha(cpf, senha);
+		DtoUsuario usuario = facadeDados.verificarCPFSenha(cpf, senha);
 		if (usuario != null) {
 			getSession().setAttribute("usuario", usuario);
 			ui.montarInterface();

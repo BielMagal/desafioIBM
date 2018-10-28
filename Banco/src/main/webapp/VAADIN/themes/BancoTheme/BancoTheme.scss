@@ -60,9 +60,36 @@
 		font-size: 14px;
 		color: white;
 	}
-	.bem-vindo {
+	.v-caption-bem-vindo {
 	    padding-left: 10px;
 	    padding-top: 10px;
 	    font-size: 20px;
+	}
+	.button-meta {
+		background: transparent;
+		border: none;
+		box-shadow: none;
+		padding: 0;
+		height: 30px;
+		width: 100%;
+		font-size: 12px;
+	}
+	.button-meta:focus:after {
+		border: none;
+		box-shadow: none;
+	}
+	.button-meta img {
+		height: 30px;
+		padding: 0px;
+	}
+	.v-grid-row.positivo > td{
+	    background-color: #8ae26d !important;
+	    color: black;
+		font-weight: bolder;
+    }
+    .v-grid-row.negativo > td{
+    	background-color: #e26d6d !important;
+    	color: black;
+		font-weight: bolder;
 	}
 }

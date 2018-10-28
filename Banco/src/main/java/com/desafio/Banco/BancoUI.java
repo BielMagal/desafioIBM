@@ -95,7 +95,7 @@ public class BancoUI extends UI {
 
 	private void configurarCabecalho() {
 		labelCabecalho = new Label("");
-		labelCabecalho.addStyleName("bem-vindo");
+		labelCabecalho.setStyleName("bem-vindo");
 		Button btnConfiguracao = new Button("", new FileResource(new File(pastaIcones + "/configuracao.png")));
 		btnConfiguracao.addClickListener(this::gerenciarUsuarios);
 		btnConfiguracao.addStyleName("bigbutton");

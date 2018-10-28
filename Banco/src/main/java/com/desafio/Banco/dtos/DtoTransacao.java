@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.desafio.Banco.utils.BancoUtil;
+import com.desafio.BancoModel.model.Transacao;
 
 public class DtoTransacao {
 	
@@ -46,6 +47,14 @@ public class DtoTransacao {
 		this.usuarioOrigem = usuarioOrigem;
 		this.usuarioDestino = usuarioDestino;
 		this.valor = valor;
+	}
+
+	public DtoTransacao(Transacao t) {
+		this.id = t.getId();
+		this.data = Calendar.getInstance();
+		data.setTime(t.getData());
+		this.tipoTransacao = new DtoTipoTransacao(t.getTipoTransacao());
+		this.valor = t.getValor();
 	}
 
 	public Integer getId() {

@@ -6,7 +6,7 @@ import org.vaadin.textfieldformatter.NumeralFieldFormatter;
 
 import com.desafio.Banco.dtos.DtoTipoTransacao;
 import com.desafio.Banco.dtos.DtoTransacao;
-import com.desafio.Banco.facades.FacadeTransacao;
+import com.desafio.Banco.facades.FacadeDados;
 import com.desafio.Banco.layouts.PrincipalLayout;
 import com.desafio.Banco.utils.BancoUtil;
 import com.desafio.BancoModel.model.Conta;
@@ -22,7 +22,7 @@ import com.vaadin.ui.Window;
 public class SaqueWindow extends Window {
 	private static final long serialVersionUID = 1L;
 
-	private FacadeTransacao facadeTransacao;
+	private FacadeDados facadeTransacao;
 
 	DtoTransacao transacao;
 	Binder<DtoTransacao> binder;
@@ -35,13 +35,13 @@ public class SaqueWindow extends Window {
 	PrincipalLayout layout;
 	Conta conta;
 
-	public SaqueWindow(FacadeTransacao facadeTransacao, PrincipalLayout layout, Conta conta) {
+	public SaqueWindow(FacadeDados facadeTransacao, PrincipalLayout layout, Conta conta) {
 		super();
 		this.conta = conta;
 		this.layout = layout;
 		this.facadeTransacao = facadeTransacao;
 		this.transacao = new DtoTransacao();
-		transacao.setTipoTransacao(new DtoTipoTransacao("saque", null, null));
+		transacao.setTipoTransacao(new DtoTipoTransacao("Saque", null, null));
 		this.setCaption("Realizar Saque");
 		this.setWidth("400px");
 		btnConfirmar = new Button("Confirmar", this::save);

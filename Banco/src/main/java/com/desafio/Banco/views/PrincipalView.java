@@ -16,9 +16,10 @@ public class PrincipalView extends VerticalLayout implements View {
 
 	private BancoUI ui = (BancoUI) UI.getCurrent();
 	private MenuItem item;
-
+	private PrincipalLayout principalLayout;
+	
 	public PrincipalView(DtoUsuario usuario) {
-		PrincipalLayout principalLayout = new PrincipalLayout(usuario);
+		principalLayout = new PrincipalLayout(usuario);
 		principalLayout.setMargin(false);
 		principalLayout.setSizeFull();
 		addComponent(principalLayout);
@@ -37,5 +38,6 @@ public class PrincipalView extends VerticalLayout implements View {
 		ui.setItemSelecionado(item);
 		ui.setDivisaoPainel(0);
 		ui.setDivisaoNavegador(100);
+		principalLayout.update();
 	}
 }
