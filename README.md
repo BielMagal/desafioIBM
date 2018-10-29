@@ -9,11 +9,15 @@ Dados técnicos:
 <LI>Framework back-end: EclipseLink</LI>
 <LI>Servidor de aplicação: WildFly</LI>
 </UL><BR>
+	
+	
 
 No sistema implementado existem dois tipos de usuários: Clientes e Gerentes.
 Para realizar o login no sistema é necessário utilizar seu CPF e senha já cadastrados por um Gerente.
 
-<BR>
+
+
+
 Funções do Cliente:
 <UL TYPE="disc">
 <LI>Visualizar seu saldo e número da conta</LI>
@@ -21,8 +25,10 @@ Funções do Cliente:
 <LI>Realizar saques, depósitos e transferências para outras contas.</LI>
 </UL>	
 
-<BR>
-Operações do cliente:
+
+
+
+Operações do Cliente:
 <UL TYPE="disc">
 <LI>Saque: Um cliente pode realizar saque contanto que o valor não exceda o saldo da conta.</LI>
 <LI>Depósito: É possível depositar qualquer valor (dentro dos limites de um Double).</LI>
@@ -38,16 +44,20 @@ Operações do cliente:
 </UL>
 Obs: O tipo de usuário (cliente/gerente), CPF e conta não podem ser alterados.
 
-<BR><BR>
+
+
+
 Funções do Gerente:
 <UL TYPE="disc">
 <LI>Realizar as mesmas funções do cliente, tendo em vista que ele também é um.</LI>
 <LI>Acessar o relatório contendo as transações de todos os clientes pelo período que selecionar.</LI>
 <LI>Visualizar o saldo da conta de todos os clientes.</LI>
-Gerenciar usuários.
+<LI>Gerenciar usuários.</LI>
 </UL>
 	
-<BR>  
+	
+	
+	
 Operações do Gerente:
 <UL TYPE="disc">
 <LI>Relatório de transações: O Gerente pode visualizar todas as transferências selecionando o período e clicando no botão "Gerar relatórios".</LI>
@@ -56,17 +66,19 @@ Operações do Gerente:
 <LI>Vermelha -> Dinheiro saiu do banco</LI>
 <LI>Verde -> Dinheiro entrou no banco</LI>
 <LI>Amarela -> O dinheiro mudou de cliente mas continua no banco</LI>
-<UL></LI>
+</UL></LI>
 <LI>Saldos de contas: Consultar o saldo de todas as contas.</LI>
 <LI>Gerenciar Usuários: Nesta tela o Gerente é capaz de criar novos usuários (tanto clientes quanto gerentes). Consultar as informações de cada usuário e realizar o reset da senha de cada usuário para a padrão, "abc123" sem aspas;</LI>
-</UL>
-
-<BR>
+</UL></LI>
+		
+	
+	
+	
 Considerações:
 <UL TYPE="disc">
-<LI>Os campos foram verificados para evitar erros, a maioria dos campos do sistema possui um "formatter" evitando digitação de caracteres não esperados.
-<LI>A única tela existente antes da realização do login é a própria tela de login, as outras são criadas no momento que o login é realizado e são destruídas após o logout evitando acessos indevidos.
-<LI>AS Views de gerência não podem ser acessadas por clientes pois não existem em seu contexto.
-<LI>As senhas são armazenadas em formato hash utilizando o MD5.
-<LI>Para o login é verificado se o hash da senha digitada coincide com o armazenado para o usuário.
+<LI>Os campos foram verificados para evitar erros, a maioria dos campos do sistema possui um "formatter" evitando digitação de caracteres não esperados.</LI>
+<LI>A única tela existente antes da realização do login é a própria tela de login, as outras são criadas no momento que o login é realizado e são destruídas após o logout evitando acessos indevidos.</LI>
+<LI>AS Views de gerência não podem ser acessadas por clientes pois não existem em seu contexto.</LI>
+<LI>As senhas são armazenadas em formato hash utilizando o MD5.</LI>
+<LI>Para o login é verificado se o hash da senha digitada coincide com o armazenado para o usuário.</LI>
 </UL>
